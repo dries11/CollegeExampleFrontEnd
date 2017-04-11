@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title class="title">
+            {{student.firstName}} {{student.lastName}}
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only clear round (click)="close()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-avatar>
+        <img src="{{student.imageUrl}}" class="image">
+    </ion-avatar>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="gridContent" width-10>
+                ID
+            </ion-col>
+            <ion-col class="gridContent" width-30>
+                First Name
+            </ion-col>
+            <ion-col class="gridContent" width-30>
+                Last Name
+            </ion-col>
+            <ion-col class="gridContent" width-30>
+                Email
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="gridContent" width-10>
+                {{student.id}}
+            </ion-col>
+            <ion-col class="gridContent" width-30>
+                {{student.firstName}}
+            </ion-col>
+            <ion-col class="gridContent" width-30>
+                {{student.lastName}}
+            </ion-col>
+            <ion-col class="gridContent" width-30>
+                {{student.email}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
