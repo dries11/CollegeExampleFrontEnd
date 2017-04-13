@@ -43,8 +43,20 @@ export class HomePage {
           placeholder: 'Email'
         },
         {
-          name: 'password',
-          placeholder: 'Password'
+          name: 'address',
+          placeholder: 'Street'
+        },
+        {
+          name: 'city',
+          placeholder: 'City'
+        },
+        {
+          name: 'state',
+          placeholder: 'State'
+        },
+        {
+          name: 'zip',
+          placeholder: 'Zip Code'
         },
         {
           name: 'gender',
@@ -61,10 +73,9 @@ export class HomePage {
         {
           text: 'Save',
           handler: data => {
-            data.active = "yes";
-            console.log(data);
-            this.studentService.createNewStudent(data, data.gender);
-
+            data.enrolled = "yes";
+            this.studentService.createNewStudent(data);
+            this.loadStudents();
           }
         }
       ]
@@ -86,23 +97,16 @@ export class HomePage {
     })
   }
 
-  doRefresh(refresher) {
-    this.loadStudents();
-    setTimeout(() => {
-      refresher.complete();
-    }, 1000);
-  }
-
   calculateStatistics(){
     this.studentStats.totalStudents = this.students.length;
     this.studentStats.activeStudents = 0;
     this.studentStats.inactiveStudents = 0;
 
     for(var i = 0; i < this.students.length; i++){
-      if(this.students[i].active == 'yes'){
+      if(this.students[i].enrolled == 'yes'){
         this.studentStats.activeStudents += 1;
       }
-      else if(this.students[i].active == 'no'){
+      else if(this.students[i].enrolled == 'no'){
         this.studentStats.inactiveStudents += 1;
       }
       if(this.students[i].gender == 'M'){
