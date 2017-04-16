@@ -1,67 +1,17 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="collegeBlue">
     <ion-title>
-      Current Students
+      Student Management System
     </ion-title>
-    <ion-buttons end>
-      <button ion-button clear icon-only (click)="addNewStudent()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
-  <ion-toolbar>
-    <button ion-button block icon-only (click)="goToStatsPage()">
-      <ion-icon name="stats"></ion-icon>
-    </button>
-    <button ion-button block icon-only>
-      <ion-icon name="funnel"></ion-icon>
-    </button>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          ID
-        </ion-col>
-        <ion-col>
-          First Name
-        </ion-col>
-        <ion-col>
-          Last Name
-        </ion-col>
-        <ion-col>
-          Email
-        </ion-col>
-        <ion-col>
-          Gender
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ng-container *ngFor="let student of students; let isOdd=odd; let isEven=even">
-      <button ion-item *ngIf="student.enrolled == 'yes'" [class.odd]="isOdd" [class.even]="isEven" (click)="showStudentInfoModal(student)">
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              {{student.id}}
-            </ion-col>
-            <ion-col>
-              {{student.firstName}}
-            </ion-col>
-            <ion-col>
-              {{student.lastName}}
-            </ion-col>
-            <ion-col>
-              {{student.email}}
-            </ion-col>
-            <ion-col>
-              {{student.gender}}
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </button>
-    </ng-container>
-  </ion-list>
+<ion-content padding class="content">
+  <div tappable (click)="toCurrentStudentsPage()" class="boximages">
+    <img src="./assets/coollogo_com-1315444.png" class="images">
+  </div>
+
+  <div tappable (click)="toStatisticsPage()" class="boximages">
+    <img src="./assets/coollogo_com-28470151.png" class="images">
+  </div>
 </ion-content>

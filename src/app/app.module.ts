@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { StatisticsPage } from '../pages/statistics/statistics';
+import { CurrentStudentsPage } from '../pages/currentstudents/currentstudents';
 
 import { StudentsService } from '../services/studentsservice';
 import { HttpModule } from '@angular/http';
@@ -17,7 +18,8 @@ import { StudentInfoModal } from '../services/studentinfo/studentinfo';
     MyApp,
     HomePage,
     StatisticsPage,
-    StudentInfoModal
+    StudentInfoModal,
+    CurrentStudentsPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { StudentInfoModal } from '../services/studentinfo/studentinfo';
     MyApp,
     HomePage,
     StatisticsPage,
-    StudentInfoModal
+    StudentInfoModal,
+    CurrentStudentsPage
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Chart } from 'chart.js';
+import { StudentsService } from '../../services/studentsservice';
 
 @Component({
   selector: 'page-statistics',
@@ -16,17 +17,21 @@ export class StatisticsPage {
   maleVsFemaleBarGraph: any;
   malePercentage: any;
   femalePercentage: any;
-  statistics: any;
+  students:any;
+  statistics = {
+    activeStudents : 0,
+    inactiveStudents: 0,
+    totalStudents: 0,
+    male: 0,
+    female: 0
+  };
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.statistics = navParams.data;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public studentService:StudentsService) {
   }
 
   ionViewDidLoad() {
-    this.createPercents();
-    this.loadActiveVsInactivePieGraph();
-    this.loadMaleVsFemaleGraph();
+    this.loadStudents();
   }
 
   loadActiveVsInactivePieGraph(){
@@ -47,6 +52,10 @@ export class StatisticsPage {
             "#FF6100"
           ]
         }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
       }
     });
 
@@ -73,6 +82,8 @@ export class StatisticsPage {
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           yAxes: [{
             ticks: {
@@ -88,6 +99,38 @@ export class StatisticsPage {
   createPercents(){
     this.malePercentage = Math.floor((this.statistics.male/this.statistics.totalStudents) * 100);
     this.femalePercentage = Math.ceil((this.statistics.female/this.statistics.totalStudents) * 100);
+  }
+
+    calculateStatistics(){
+    this.statistics.totalStudents = this.students.length;
+    this.statistics.activeStudents = 0;
+    this.statistics.inactiveStudents = 0;
+
+    for(var i = 0; i < this.students.length; i++){
+      if(this.students[i].enrolled == 'yes'){
+        this.statistics.activeStudents += 1;
+      }
+      else if(this.students[i].enrolled == 'no'){
+        this.statistics.inactiveStudents += 1;
+      }
+      if(this.students[i].gender == 'M'){
+        this.statistics.male++;
+      }
+      else if(this.students[i].gender == 'F'){
+        this.statistics.female++;
+      }
+    }
+  }
+
+  loadStudents(){
+    this.studentService.getAllStudents().then(data => {
+      this.students = data;
+    }).then(() => {
+      this.calculateStatistics();
+      this.createPercents();
+      this.loadActiveVsInactivePieGraph();
+      this.loadMaleVsFemaleGraph();
+    })
   }
 
 }
