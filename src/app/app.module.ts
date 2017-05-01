@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { StatisticsPage } from '../pages/statistics/statistics';
 import { CurrentStudentsPage } from '../pages/currentstudents/currentstudents';
+import { NewStudentPage } from '../pages/newstudent/newstudent';
 
 import { StudentsService } from '../services/studentsservice';
 import { HttpModule } from '@angular/http';
@@ -19,12 +20,13 @@ import { StudentInfoModal } from '../services/studentinfo/studentinfo';
     HomePage,
     StatisticsPage,
     StudentInfoModal,
-    CurrentStudentsPage
+    CurrentStudentsPage,
+    NewStudentPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,7 +34,8 @@ import { StudentInfoModal } from '../services/studentinfo/studentinfo';
     HomePage,
     StatisticsPage,
     StudentInfoModal,
-    CurrentStudentsPage
+    CurrentStudentsPage,
+    NewStudentPage
   ],
   providers: [
     StatusBar,

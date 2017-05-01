@@ -3,6 +3,7 @@ import { NavController} from 'ionic-angular';
 
 import { CurrentStudentsPage } from '../currentstudents/currentstudents';
 import { StatisticsPage } from '../statistics/statistics';
+import { NewStudentPage } from '../newstudent/newstudent';
 
 @Component({
   selector: 'page-home',
@@ -21,6 +22,10 @@ export class HomePage {
 
   toStatisticsPage(){
     this.navCtrl.push(StatisticsPage);
+  }
+
+  toNewStudentPage(){
+    this.navCtrl.push(NewStudentPage);
   }
 
 }

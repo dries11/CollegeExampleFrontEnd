@@ -7,9 +7,7 @@ import 'rxjs/add/operator/map';
 export class StudentsService{
 
     serverUrl: string = "http://localhost:8080/students";
-    photosUrl: string = "https://randomuser.me/api/";
     students: [any] = [""];
-    photoUrl: string;
 
     constructor(private http:Http){
     }
@@ -33,6 +31,14 @@ export class StudentsService{
     removeStudent(id: any): any{
         this.http.post(this.serverUrl + "/remove", id).subscribe(data => {
             return data;
+        });
+    }
+
+    getStatistics(): Promise<any>{
+        return new Promise(resolve => {
+            this.http.get(this.serverUrl + "/stats").map(res => res.json()).subscribe(data => {
+                resolve(data);
+            });
         });
     }
 

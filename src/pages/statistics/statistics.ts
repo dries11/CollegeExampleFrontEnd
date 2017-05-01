@@ -17,14 +17,7 @@ export class StatisticsPage {
   maleVsFemaleBarGraph: any;
   malePercentage: any;
   femalePercentage: any;
-  students:any;
-  statistics = {
-    activeStudents : 0,
-    inactiveStudents: 0,
-    totalStudents: 0,
-    male: 0,
-    female: 0
-  };
+  statistics: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public studentService:StudentsService) {
@@ -101,32 +94,11 @@ export class StatisticsPage {
     this.femalePercentage = Math.ceil((this.statistics.female/this.statistics.totalStudents) * 100);
   }
 
-    calculateStatistics(){
-    this.statistics.totalStudents = this.students.length;
-    this.statistics.activeStudents = 0;
-    this.statistics.inactiveStudents = 0;
-
-    for(var i = 0; i < this.students.length; i++){
-      if(this.students[i].enrolled == 'yes'){
-        this.statistics.activeStudents += 1;
-      }
-      else if(this.students[i].enrolled == 'no'){
-        this.statistics.inactiveStudents += 1;
-      }
-      if(this.students[i].gender == 'M'){
-        this.statistics.male++;
-      }
-      else if(this.students[i].gender == 'F'){
-        this.statistics.female++;
-      }
-    }
-  }
-
   loadStudents(){
-    this.studentService.getAllStudents().then(data => {
-      this.students = data;
+    this.studentService.getStatistics().then(data => {
+      this.statistics = data;
     }).then(() => {
-      this.calculateStatistics();
+      console.log(this.statistics);
       this.createPercents();
       this.loadActiveVsInactivePieGraph();
       this.loadMaleVsFemaleGraph();

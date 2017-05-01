@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar color="collegeBlue">
+    <ion-title>
+      Enroll A New Student
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <p *ngIf="submitAttempt" color="danger">Please Fill Out All Details Accurately</p>
+
+  <ion-list>
+    <form [formGroup]="newStudentForm">
+
+      <ion-item>
+        <ion-label>First Name</ion-label>
+        <ion-input formControlName="firstName" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Last Name</ion-label>
+        <ion-input formControlName="lastName" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Street Address</ion-label>
+        <ion-input formControlName="address" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>City</ion-label>
+        <ion-input formControlName="city" type="text"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>State</ion-label>
+        <ion-select formControlName="state">
+          <ion-option *ngFor="let state of states" value={{state}}>{{state}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Zipcode</ion-label>
+        <ion-input formControlName="zip" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Gender</ion-label>
+          <ion-select formControlName="gender">
+            <ion-option value="F" selected="true">Female</ion-option>
+            <ion-option value="M">Male</ion-option>
+          </ion-select>
+      </ion-item>
+
+    </form>
+  </ion-list>
+
+  <button ion-button round color="collegeOrange" (click)="save()" style="text-align: center">
+    <ion-icon name="filing"></ion-icon>Enroll Student
+  </button>
+
+</ion-content>
